@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{64F26317-89BC-400C-9691-60DDACC93F41}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		src\Directory.Build.props = src\Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpAttributeParser.Patterns.Core", "src\SharpAttributeParser.Patterns.Core\SharpAttributeParser.Patterns.Core.csproj", "{01ADEFFB-0285-4672-AE6B-9E67845314F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpAttributeParser.Patterns.Abstractions", "src\SharpAttributeParser.Patterns.Abstractions\SharpAttributeParser.Patterns.Abstractions.csproj", "{57382380-51FA-4E44-9AB7-1F790D51A56B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpAttributeParser.Patterns", "src\SharpAttributeParser.Patterns\SharpAttributeParser.Patterns.csproj", "{D1416BD0-B223-400D-AFCA-41252260A3C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpAttributeParser.Patterns.DependencyInjection", "src\SharpAttributeParser.Patterns.DependencyInjection\SharpAttributeParser.Patterns.DependencyInjection.csproj", "{880FC55E-BF83-48A3-820A-840A522FC280}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpAttributeParser.Patterns.UnitTests", "tests\unit\SharpAttributeParser.Patterns.UnitTests\SharpAttributeParser.Patterns.UnitTests.csproj", "{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01ADEFFB-0285-4672-AE6B-9E67845314F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01ADEFFB-0285-4672-AE6B-9E67845314F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01ADEFFB-0285-4672-AE6B-9E67845314F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01ADEFFB-0285-4672-AE6B-9E67845314F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57382380-51FA-4E44-9AB7-1F790D51A56B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57382380-51FA-4E44-9AB7-1F790D51A56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57382380-51FA-4E44-9AB7-1F790D51A56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57382380-51FA-4E44-9AB7-1F790D51A56B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1416BD0-B223-400D-AFCA-41252260A3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1416BD0-B223-400D-AFCA-41252260A3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1416BD0-B223-400D-AFCA-41252260A3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1416BD0-B223-400D-AFCA-41252260A3C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{880FC55E-BF83-48A3-820A-840A522FC280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{880FC55E-BF83-48A3-820A-840A522FC280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{880FC55E-BF83-48A3-820A-840A522FC280}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{880FC55E-BF83-48A3-820A-840A522FC280}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF67C292-29B8-45FC-B3CA-9612B00972A2}
+	EndGlobalSection
+EndGlobal
