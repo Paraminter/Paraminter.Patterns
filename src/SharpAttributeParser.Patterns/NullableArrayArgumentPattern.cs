@@ -3,26 +3,28 @@
 using OneOf;
 using OneOf.Types;
 
-internal sealed class NullableArrayArgumentPattern<TElement> : IArgumentPattern<TElement[]?>
-{
-    private readonly IArgumentPattern<TElement[]> NonNullableCollectionPattern;
+using System.Collections.Generic;
 
-    public NullableArrayArgumentPattern(IArgumentPattern<TElement[]> nonNullableCollectionPattern)
+internal sealed class NullableArrayArgumentPattern<TElement> : IArgumentPattern<IList<TElement>?>
+{
+    private readonly IArgumentPattern<IList<TElement>> NonNullableCollectionPattern;
+
+    public NullableArrayArgumentPattern(IArgumentPattern<IList<TElement>> nonNullableCollectionPattern)
     {
         NonNullableCollectionPattern = nonNullableCollectionPattern;
     }
 
-    OneOf<Error, TElement[]?> IArgumentPattern<TElement[]?>.TryMatch(object? argument)
+    OneOf<Error, IList<TElement>?> IArgumentPattern<IList<TElement>?>.TryMatch(object? argument)
     {
         if (argument is null)
         {
-            return OneOf<Error, TElement[]?>.FromT1(null);
+            return OneOf<Error, IList<TElement>?>.FromT1(null);
         }
 
         return NonNullableCollectionPattern.TryMatch(argument).Match
         (
             static (error) => error,
-            OneOf<Error, TElement[]?>.FromT1
+            OneOf<Error, IList<TElement>?>.FromT1
         );
     }
 }

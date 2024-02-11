@@ -1,5 +1,7 @@
 ﻿namespace SharpAttributeParser.Patterns;
 
+using System.Collections.Generic;
+
 /// <summary>Handles creation of <see cref="IArgumentPattern{T}"/> matching nullable array-valued arguments.</summary>
 public interface INullableArrayArgumentPatternFactory
 {
@@ -7,5 +9,5 @@ public interface INullableArrayArgumentPatternFactory
     /// <typeparam name="TElement">The element-type of the arguments matched by the created pattern.</typeparam>
     /// <param name="elementPattern">The pattern of each element of the matched arguments.</param>
     /// <returns>The created pattern.</returns>
-    public abstract IArgumentPattern<TElement[]?> Create<TElement>(IArgumentPattern<TElement> elementPattern);
+    public abstract IArgumentPattern<IList<TElement>?> Create<TElement>(IArgumentPattern<TElement> elementPattern);
 }

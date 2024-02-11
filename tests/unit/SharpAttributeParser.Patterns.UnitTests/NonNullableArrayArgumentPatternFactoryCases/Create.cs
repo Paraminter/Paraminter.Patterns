@@ -3,12 +3,13 @@
 using Moq;
 
 using System;
+using System.Collections.Generic;
 
 using Xunit;
 
 public sealed class Create
 {
-    private static IArgumentPattern<TElement[]> Target<TElement>(INonNullableArrayArgumentPatternFactory factory, IArgumentPattern<TElement> elementPattern) => factory.Create(elementPattern);
+    private static IArgumentPattern<IList<TElement>> Target<TElement>(INonNullableArrayArgumentPatternFactory factory, IArgumentPattern<TElement> elementPattern) => factory.Create(elementPattern);
 
     private static readonly FactoryContext Context = FactoryContext.Create();
 

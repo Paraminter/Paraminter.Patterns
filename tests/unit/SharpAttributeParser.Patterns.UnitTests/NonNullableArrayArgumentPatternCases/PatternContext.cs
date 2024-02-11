@@ -1,5 +1,7 @@
 ﻿namespace SharpAttributeParser.Patterns.NonNullableArrayArgumentPatternCases;
 
+using System.Collections.Generic;
+
 internal sealed class PatternContext<TElement>
 {
     public static PatternContext<TElement> Create(IArgumentPattern<TElement> elementPattern)
@@ -9,9 +11,9 @@ internal sealed class PatternContext<TElement>
         return new(pattern);
     }
 
-    public IArgumentPattern<TElement[]> Pattern { get; }
+    public IArgumentPattern<IList<TElement>> Pattern { get; }
 
-    private PatternContext(IArgumentPattern<TElement[]> pattern)
+    private PatternContext(IArgumentPattern<IList<TElement>> pattern)
     {
         Pattern = pattern;
     }
