@@ -1,6 +1,7 @@
 ﻿namespace SharpAttributeParser.Patterns;
 
 using System;
+using System.Collections.Generic;
 
 /// <inheritdoc cref="INullableArrayArgumentPatternFactory"/>
 public sealed class NullableArrayArgumentPatternFactory : INullableArrayArgumentPatternFactory
@@ -8,7 +9,7 @@ public sealed class NullableArrayArgumentPatternFactory : INullableArrayArgument
     /// <summary>Instantiates a <see cref="NullableArrayArgumentPatternFactory"/>, handling creation of <see cref="IArgumentPattern{T}"/> matching nullable array-valued arguments.</summary>
     public NullableArrayArgumentPatternFactory() { }
 
-    IArgumentPattern<TElement[]?> INullableArrayArgumentPatternFactory.Create<TElement>(IArgumentPattern<TElement> elementPattern)
+    IArgumentPattern<IList<TElement>?> INullableArrayArgumentPatternFactory.Create<TElement>(IArgumentPattern<TElement> elementPattern)
     {
         if (elementPattern is null)
         {
