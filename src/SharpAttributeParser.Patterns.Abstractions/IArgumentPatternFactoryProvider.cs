@@ -2,9 +2,7 @@
 
 using Microsoft.CodeAnalysis;
 
-using System;
-
-/// <summary>Provides <see cref="IArgumentPattern{T}"/> factories.</summary>
+/// <summary>Provides factories of <see cref="IArgumentPattern{T}"/>.</summary>
 public interface IArgumentPatternFactoryProvider
 {
     /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="bool"/> arguments.</summary>
@@ -46,29 +44,16 @@ public interface IArgumentPatternFactoryProvider
     /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching enum arguments.</summary>
     public abstract IEnumArgumentPatternFactory Enum { get; }
 
-    /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable <see cref="string"/> arguments.</summary>
-    public abstract INonNullableStringArgumentPatternFactory NonNullableString { get; }
+    /// <summary>Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="string"/> arguments.</summary>
+    public abstract IStringArgumentPatternFactoryProvider String { get; }
 
-    /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable <see cref="string"/> arguments.</summary>
-    public abstract INullableStringArgumentPatternFactory NullableString { get; }
+    /// <summary>Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="object"/> arguments.</summary>
+    public abstract IObjectArgumentPatternFactoryProvider Object { get; }
 
-    /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable <see cref="object"/> arguments.</summary>
-    public abstract INonNullableObjectArgumentPatternFactory NonNullableObject { get; }
+    /// <summary>Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="ITypeSymbol"/> arguments.</summary>
+    /// <remarks>Attribute arguments of type <see cref="System.Type"/> will match the patterns created by these factories, as Roslyn uses <see cref="ITypeSymbol"/> to represent <see cref="System.Type"/>.</remarks>
+    public abstract ITypeArgumentPatternFactoryProvider Type { get; }
 
-    /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable <see cref="object"/> arguments.</summary>
-    public abstract INullableObjectArgumentPatternFactory NullableObject { get; }
-
-    /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable <see cref="ITypeSymbol"/> arguments.</summary>
-    /// <remarks>Attribute arguments of type <see cref="Type"/> will match the patterns created by this factory, as Roslyn uses <see cref="ITypeSymbol"/> to represent <see cref="Type"/>.</remarks>
-    public abstract INonNullableTypeArgumentPatternFactory NonNullableType { get; }
-
-    /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable <see cref="ITypeSymbol"/> arguments.</summary>
-    /// <remarks>Attribute arguments of type <see cref="Type"/> will match the patterns created by this factory, as Roslyn uses <see cref="ITypeSymbol"/> to represent <see cref="Type"/>.</remarks>
-    public abstract INullableTypeArgumentPatternFactory NullableType { get; }
-
-    /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable array-valued arguments.</summary>
-    public abstract INonNullableArrayArgumentPatternFactory NonNullableArray { get; }
-
-    /// <summary>The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable array-valued arguments.</summary>
-    public abstract INullableArrayArgumentPatternFactory NullableArray { get; }
+    /// <summary>Provides factories of <see cref="IArgumentPattern{T}"/> matching array-valued arguments.</summary>
+    public abstract IArrayArgumentPatternFactoryProvider Array { get; }
 }

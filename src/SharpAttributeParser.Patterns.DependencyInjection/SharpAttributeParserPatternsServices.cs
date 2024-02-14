@@ -18,6 +18,10 @@ public static class SharpAttributeParserPatternsServices
         }
 
         services.AddSingleton<IArgumentPatternFactoryProvider, ArgumentPatternFactoryProvider>();
+        services.AddSingleton<IStringArgumentPatternFactoryProvider, StringArgumentPatternFactoryProvider>();
+        services.AddSingleton<IObjectArgumentPatternFactoryProvider, ObjectArgumentPatternFactoryProvider>();
+        services.AddSingleton<ITypeArgumentPatternFactoryProvider, TypeArgumentPatternFactoryProvider>();
+        services.AddSingleton<IArrayArgumentPatternFactoryProvider, ArrayArgumentPatternFactoryProvider>();
 
         services.AddSingleton<IBoolArgumentPatternFactory, BoolArgumentPatternFactory>();
         services.AddSingleton<IByteArgumentPatternFactory, ByteArgumentPatternFactory>();

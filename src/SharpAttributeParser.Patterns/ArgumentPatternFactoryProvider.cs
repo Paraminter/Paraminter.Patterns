@@ -19,16 +19,12 @@ public sealed class ArgumentPatternFactoryProvider : IArgumentPatternFactoryProv
     private readonly IDoubleArgumentPatternFactory Double;
     private readonly IEnumArgumentPatternFactory Enum;
 
-    private readonly INonNullableStringArgumentPatternFactory NonNullableString;
-    private readonly INullableStringArgumentPatternFactory NullableString;
-    private readonly INonNullableObjectArgumentPatternFactory NonNullableObject;
-    private readonly INullableObjectArgumentPatternFactory NullableObject;
-    private readonly INonNullableTypeArgumentPatternFactory NonNullableType;
-    private readonly INullableTypeArgumentPatternFactory NullableType;
-    private readonly INonNullableArrayArgumentPatternFactory NonNullableArray;
-    private readonly INullableArrayArgumentPatternFactory NullableArray;
+    private readonly IStringArgumentPatternFactoryProvider StringFactoryProvider;
+    private readonly IObjectArgumentPatternFactoryProvider ObjectFactoryProvider;
+    private readonly ITypeArgumentPatternFactoryProvider TypeFactoryProvider;
+    private readonly IArrayArgumentPatternFactoryProvider ArrayFactoryProvider;
 
-    /// <summary>Instantiates a <see cref="ArgumentPatternFactoryProvider"/>, handling creation of <see cref="IArgumentPattern{T}"/>.</summary>
+    /// <summary>Instantiates a <see cref="ArgumentPatternFactoryProvider"/>, providing factories of <see cref="IArgumentPattern{T}"/>.</summary>
     /// <param name="boolArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="bool"/> arguments.</param>
     /// <param name="byteArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="byte"/> arguments.</param>
     /// <param name="sbyteArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="sbyte"/> arguments.</param>
@@ -42,21 +38,15 @@ public sealed class ArgumentPatternFactoryProvider : IArgumentPatternFactoryProv
     /// <param name="floatArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="float"/> arguments.</param>
     /// <param name="doubleArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="double"/> arguments.</param>
     /// <param name="enumArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching enum arguments.</param>
-    /// <param name="nonNullableStringArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable <see cref="string"/> arguments.</param>
-    /// <param name="nullableStringArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable <see cref="string"/> arguments.</param>
-    /// <param name="nonNullableObjectArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable <see cref="object"/> arguments.</param>
-    /// <param name="nullableObjectArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable <see cref="object"/> arguments.</param>
-    /// <param name="nonNullableTypeArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable <see cref="Type"/> arguments.</param>
-    /// <param name="nullableTypeArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable <see cref="Type"/> arguments.</param>
-    /// <param name="nonNullableArrayArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable array-valued arguments.</param>
-    /// <param name="nullableArrayArgumentPattern">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable array-valued arguments.</param>
+    /// <param name="stringFactoryProvider">Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="string"/> arguments.</param>
+    /// <param name="objectFactoryProvider">Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="object"/> arguments.</param>
+    /// <param name="typeFactoryProvider">Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="Type"/> arguments.</param>
+    /// <param name="arrayFactoryProvider">Provides factories of <see cref="IArgumentPattern{T}"/> matching array-valued arguments.</param>
     public ArgumentPatternFactoryProvider(IBoolArgumentPatternFactory boolArgumentPatternFactory, IByteArgumentPatternFactory byteArgumentPatternFactory, ISByteArgumentPatternFactory sbyteArgumentPatternFactory,
         ICharArgumentPatternFactory charArgumentPatternFactory, IShortArgumentPatternFactory shortArgumentPatternFactory, IUShortArgumentPatternFactory ushortArgumentPatternFactory, IIntArgumentPatternFactory intArgumentPatternFactory,
         IUIntArgumentPatternFactory uintArgumentPatternFactory, ILongArgumentPatternFactory longArgumentPatternFactory, IULongArgumentPatternFactory ulongArgumentPatternFactory, IFloatArgumentPatternFactory floatArgumentPatternFactory,
-        IDoubleArgumentPatternFactory doubleArgumentPatternFactory, IEnumArgumentPatternFactory enumArgumentPatternFactory, INonNullableStringArgumentPatternFactory nonNullableStringArgumentPatternFactory,
-        INullableStringArgumentPatternFactory nullableStringArgumentPatternFactory, INonNullableObjectArgumentPatternFactory nonNullableObjectArgumentPatternFactory, INullableObjectArgumentPatternFactory nullableObjectArgumentPatternFactory,
-        INonNullableTypeArgumentPatternFactory nonNullableTypeArgumentPatternFactory, INullableTypeArgumentPatternFactory nullableTypeArgumentPatternFactory, INonNullableArrayArgumentPatternFactory nonNullableArrayArgumentPatternFactory,
-        INullableArrayArgumentPatternFactory nullableArrayArgumentPattern)
+        IDoubleArgumentPatternFactory doubleArgumentPatternFactory, IEnumArgumentPatternFactory enumArgumentPatternFactory, IStringArgumentPatternFactoryProvider stringFactoryProvider, IObjectArgumentPatternFactoryProvider objectFactoryProvider,
+        ITypeArgumentPatternFactoryProvider typeFactoryProvider, IArrayArgumentPatternFactoryProvider arrayFactoryProvider)
     {
         Bool = boolArgumentPatternFactory ?? throw new ArgumentNullException(nameof(boolArgumentPatternFactory));
         Byte = byteArgumentPatternFactory ?? throw new ArgumentNullException(nameof(byteArgumentPatternFactory));
@@ -71,15 +61,10 @@ public sealed class ArgumentPatternFactoryProvider : IArgumentPatternFactoryProv
         Float = floatArgumentPatternFactory ?? throw new ArgumentNullException(nameof(floatArgumentPatternFactory));
         Double = doubleArgumentPatternFactory ?? throw new ArgumentNullException(nameof(doubleArgumentPatternFactory));
         Enum = enumArgumentPatternFactory ?? throw new ArgumentNullException(nameof(enumArgumentPatternFactory));
-
-        NonNullableString = nonNullableStringArgumentPatternFactory ?? throw new ArgumentNullException(nameof(nonNullableStringArgumentPatternFactory));
-        NullableString = nullableStringArgumentPatternFactory ?? throw new ArgumentNullException(nameof(nullableStringArgumentPatternFactory));
-        NonNullableObject = nonNullableObjectArgumentPatternFactory ?? throw new ArgumentNullException(nameof(nonNullableObjectArgumentPatternFactory));
-        NullableObject = nullableObjectArgumentPatternFactory ?? throw new ArgumentNullException(nameof(nullableObjectArgumentPatternFactory));
-        NonNullableType = nonNullableTypeArgumentPatternFactory ?? throw new ArgumentNullException(nameof(nonNullableTypeArgumentPatternFactory));
-        NullableType = nullableTypeArgumentPatternFactory ?? throw new ArgumentNullException(nameof(nullableTypeArgumentPatternFactory));
-        NonNullableArray = nonNullableArrayArgumentPatternFactory ?? throw new ArgumentNullException(nameof(nonNullableArrayArgumentPatternFactory));
-        NullableArray = nullableArrayArgumentPattern ?? throw new ArgumentNullException(nameof(nullableArrayArgumentPattern));
+        StringFactoryProvider = stringFactoryProvider ?? throw new ArgumentNullException(nameof(stringFactoryProvider));
+        ObjectFactoryProvider = objectFactoryProvider ?? throw new ArgumentNullException(nameof(objectFactoryProvider));
+        TypeFactoryProvider = typeFactoryProvider ?? throw new ArgumentNullException(nameof(typeFactoryProvider));
+        ArrayFactoryProvider = arrayFactoryProvider ?? throw new ArgumentNullException(nameof(arrayFactoryProvider));
     }
 
     IBoolArgumentPatternFactory IArgumentPatternFactoryProvider.Bool => Bool;
@@ -97,13 +82,8 @@ public sealed class ArgumentPatternFactoryProvider : IArgumentPatternFactoryProv
 
     IEnumArgumentPatternFactory IArgumentPatternFactoryProvider.Enum => Enum;
 
-    INonNullableStringArgumentPatternFactory IArgumentPatternFactoryProvider.NonNullableString => NonNullableString;
-    INullableStringArgumentPatternFactory IArgumentPatternFactoryProvider.NullableString => NullableString;
-    INonNullableObjectArgumentPatternFactory IArgumentPatternFactoryProvider.NonNullableObject => NonNullableObject;
-    INullableObjectArgumentPatternFactory IArgumentPatternFactoryProvider.NullableObject => NullableObject;
-    INonNullableTypeArgumentPatternFactory IArgumentPatternFactoryProvider.NonNullableType => NonNullableType;
-    INullableTypeArgumentPatternFactory IArgumentPatternFactoryProvider.NullableType => NullableType;
-
-    INonNullableArrayArgumentPatternFactory IArgumentPatternFactoryProvider.NonNullableArray => NonNullableArray;
-    INullableArrayArgumentPatternFactory IArgumentPatternFactoryProvider.NullableArray => NullableArray;
+    IStringArgumentPatternFactoryProvider IArgumentPatternFactoryProvider.String => StringFactoryProvider;
+    IObjectArgumentPatternFactoryProvider IArgumentPatternFactoryProvider.Object => ObjectFactoryProvider;
+    ITypeArgumentPatternFactoryProvider IArgumentPatternFactoryProvider.Type => TypeFactoryProvider;
+    IArrayArgumentPatternFactoryProvider IArgumentPatternFactoryProvider.Array => ArrayFactoryProvider;
 }
