@@ -20,18 +20,24 @@ internal sealed class ProviderContext
         var doubleArgumentPatternFactory = Mock.Of<IDoubleArgumentPatternFactory>();
         var enumArgumentPatternFactory = Mock.Of<IEnumArgumentPatternFactory>();
 
-        var stringArgumentPatternFactoryProvider = Mock.Of<IStringArgumentPatternFactoryProvider>();
-        var objectArgumentPatternFactoryProvider = Mock.Of<IObjectArgumentPatternFactoryProvider>();
-        var typeArgumentPatternFactoryProvider = Mock.Of<ITypeArgumentPatternFactoryProvider>();
-        var arrayArgumentPatternFactoryProvider = Mock.Of<IArrayArgumentPatternFactoryProvider>();
+        var nonNullableStringArgumentPatternFactory = Mock.Of<INonNullableStringArgumentPatternFactory>();
+        var nullableStringArgumentPatternFactory = Mock.Of<INullableStringArgumentPatternFactory>();
+        var nonNullableObjectArgumentPatternFactory = Mock.Of<INonNullableObjectArgumentPatternFactory>();
+        var nullableObjectArgumentPatternFactory = Mock.Of<INullableObjectArgumentPatternFactory>();
+        var nonNullableTypeArgumentPatternFactory = Mock.Of<INonNullableTypeArgumentPatternFactory>();
+        var nullableTypeArgumentPatternFactory = Mock.Of<INullableTypeArgumentPatternFactory>();
+        var nonNullableArrayArgumentPatternFactory = Mock.Of<INonNullableArrayArgumentPatternFactory>();
+        var nullableArrayArgumentPatternFactory = Mock.Of<INullableArrayArgumentPatternFactory>();
 
         ArgumentPatternFactoryProvider provider = new(boolArgumentPatternFactory, byteArgumentPatternFactory, sbyteArgumentPatternFactory, charArgumentPatternFactory, shortArgumentPatternFactory,
             ushortArgumentPatternFactory, intArgumentPatternFactory, uintArgumentPatternFactory, longArgumentPatternFactory, ulongArgumentPatternFactory, floatArgumentPatternFactory, doubleArgumentPatternFactory,
-            enumArgumentPatternFactory, stringArgumentPatternFactoryProvider, objectArgumentPatternFactoryProvider, typeArgumentPatternFactoryProvider, arrayArgumentPatternFactoryProvider);
+            enumArgumentPatternFactory, nonNullableStringArgumentPatternFactory, nullableStringArgumentPatternFactory, nonNullableObjectArgumentPatternFactory, nullableObjectArgumentPatternFactory,
+            nonNullableTypeArgumentPatternFactory, nullableTypeArgumentPatternFactory, nonNullableArrayArgumentPatternFactory, nullableArrayArgumentPatternFactory);
 
         return new(provider, boolArgumentPatternFactory, byteArgumentPatternFactory, sbyteArgumentPatternFactory, charArgumentPatternFactory, shortArgumentPatternFactory,
             ushortArgumentPatternFactory, intArgumentPatternFactory, uintArgumentPatternFactory, longArgumentPatternFactory, ulongArgumentPatternFactory, floatArgumentPatternFactory, doubleArgumentPatternFactory,
-            enumArgumentPatternFactory, stringArgumentPatternFactoryProvider, objectArgumentPatternFactoryProvider, typeArgumentPatternFactoryProvider, arrayArgumentPatternFactoryProvider);
+            enumArgumentPatternFactory, nonNullableStringArgumentPatternFactory, nullableStringArgumentPatternFactory, nonNullableObjectArgumentPatternFactory, nullableObjectArgumentPatternFactory,
+            nonNullableTypeArgumentPatternFactory, nullableTypeArgumentPatternFactory, nonNullableArrayArgumentPatternFactory, nullableArrayArgumentPatternFactory);
     }
 
     public IArgumentPatternFactoryProvider Provider { get; }
@@ -50,16 +56,22 @@ internal sealed class ProviderContext
     public IDoubleArgumentPatternFactory Double { get; }
     public IEnumArgumentPatternFactory Enum { get; }
 
-    public IStringArgumentPatternFactoryProvider StringFactoryProvider { get; }
-    public IObjectArgumentPatternFactoryProvider ObjectFactoryProvider { get; }
-    public ITypeArgumentPatternFactoryProvider TypeFactoryProvider { get; }
-    public IArrayArgumentPatternFactoryProvider ArrayFactoryProvider { get; }
+    public INonNullableStringArgumentPatternFactory NonNullableString { get; }
+    public INullableStringArgumentPatternFactory NullableString { get; }
+    public INonNullableObjectArgumentPatternFactory NonNullableObject { get; }
+    public INullableObjectArgumentPatternFactory NullableObject { get; }
+    public INonNullableTypeArgumentPatternFactory NonNullableType { get; }
+    public INullableTypeArgumentPatternFactory NullableType { get; }
+    public INonNullableArrayArgumentPatternFactory NonNullableArray { get; }
+    public INullableArrayArgumentPatternFactory NullableArray { get; }
 
     public ProviderContext(IArgumentPatternFactoryProvider provider, IBoolArgumentPatternFactory boolArgumentPatternFactory, IByteArgumentPatternFactory byteArgumentPatternFactory, ISByteArgumentPatternFactory sbyteArgumentPatternFactory,
         ICharArgumentPatternFactory charArgumentPatternFactory, IShortArgumentPatternFactory shortArgumentPatternFactory, IUShortArgumentPatternFactory ushortArgumentPatternFactory, IIntArgumentPatternFactory intArgumentPatternFactory,
         IUIntArgumentPatternFactory uintArgumentPatternFactory, ILongArgumentPatternFactory longArgumentPatternFactory, IULongArgumentPatternFactory ulongArgumentPatternFactory, IFloatArgumentPatternFactory floatArgumentPatternFactory,
-        IDoubleArgumentPatternFactory doubleArgumentPatternFactory, IEnumArgumentPatternFactory enumArgumentPatternFactory, IStringArgumentPatternFactoryProvider stringFactoryProvider, IObjectArgumentPatternFactoryProvider objectFactoryProvider,
-        ITypeArgumentPatternFactoryProvider typeFactoryProvider, IArrayArgumentPatternFactoryProvider arrayFactoryProvider)
+        IDoubleArgumentPatternFactory doubleArgumentPatternFactory, IEnumArgumentPatternFactory enumArgumentPatternFactory, INonNullableStringArgumentPatternFactory nonNullableStringArgumentPatternFactory,
+        INullableStringArgumentPatternFactory nullableStringArgumentPatternFactory, INonNullableObjectArgumentPatternFactory nonNullableObjectArgumentPatternFactory, INullableObjectArgumentPatternFactory nullableObjectArgumentPatternFactory,
+        INonNullableTypeArgumentPatternFactory nonNullableTypeArgumentPatternFactory, INullableTypeArgumentPatternFactory nullableTypeArgumentPatternFactory, INonNullableArrayArgumentPatternFactory nonNullableArrayArgumentPatternFactory,
+        INullableArrayArgumentPatternFactory nullableArrayArgumentPattern)
     {
         Provider = provider;
 
@@ -77,9 +89,13 @@ internal sealed class ProviderContext
         Double = doubleArgumentPatternFactory;
         Enum = enumArgumentPatternFactory;
 
-        StringFactoryProvider = stringFactoryProvider;
-        ObjectFactoryProvider = objectFactoryProvider;
-        TypeFactoryProvider = typeFactoryProvider;
-        ArrayFactoryProvider = arrayFactoryProvider;
+        NonNullableString = nonNullableStringArgumentPatternFactory;
+        NullableString = nullableStringArgumentPatternFactory;
+        NonNullableObject = nonNullableObjectArgumentPatternFactory;
+        NullableObject = nullableObjectArgumentPatternFactory;
+        NonNullableType = nonNullableTypeArgumentPatternFactory;
+        NullableType = nullableTypeArgumentPatternFactory;
+        NonNullableArray = nonNullableArrayArgumentPatternFactory;
+        NullableArray = nullableArrayArgumentPattern;
     }
 }

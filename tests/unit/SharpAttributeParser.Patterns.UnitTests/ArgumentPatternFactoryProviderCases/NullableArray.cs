@@ -2,9 +2,9 @@
 
 using Xunit;
 
-public sealed class Type
+public sealed class NullableArray
 {
-    private static ITypeArgumentPatternFactoryProvider Target(IArgumentPatternFactoryProvider provider) => provider.Type;
+    private static INullableArrayArgumentPatternFactory Target(IArgumentPatternFactoryProvider provider) => provider.NullableArray;
 
     private static readonly ProviderContext Context = ProviderContext.Create();
 
@@ -13,6 +13,6 @@ public sealed class Type
     {
         var actual = Target(Context.Provider);
 
-        Assert.Same(Context.TypeFactoryProvider, actual);
+        Assert.Same(Context.NullableArray, actual);
     }
 }
