@@ -2,9 +2,9 @@
 
 using Xunit;
 
-public sealed class String
+public sealed class NonNullableType
 {
-    private static IStringArgumentPatternFactoryProvider Target(IArgumentPatternFactoryProvider provider) => provider.String;
+    private static INonNullableTypeArgumentPatternFactory Target(IArgumentPatternFactoryProvider provider) => provider.NonNullableType;
 
     private static readonly ProviderContext Context = ProviderContext.Create();
 
@@ -13,6 +13,6 @@ public sealed class String
     {
         var actual = Target(Context.Provider);
 
-        Assert.Same(Context.StringFactoryProvider, actual);
+        Assert.Same(Context.NonNullableType, actual);
     }
 }
