@@ -5,7 +5,7 @@ using OneOf.Types;
 
 using System.Collections.Generic;
 
-internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPattern<TElement[]>
+internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPattern<IList<TElement>>
 {
     private readonly IArgumentPattern<TElement> ElementPattern;
 
@@ -14,7 +14,7 @@ internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPatte
         ElementPattern = elementPattern;
     }
 
-    OneOf<Error, TElement[]> IArgumentPattern<TElement[]>.TryMatch(object? argument)
+    OneOf<Error, IList<TElement>> IArgumentPattern<IList<TElement>>.TryMatch(object? argument)
     {
         if (argument is null)
         {
@@ -34,7 +34,7 @@ internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPatte
         return new Error();
     }
 
-    private OneOf<Error, TElement[]> MatchElementArray(IReadOnlyList<TElement> elementArrayArgument)
+    private OneOf<Error, IList<TElement>> MatchElementArray(IReadOnlyList<TElement> elementArrayArgument)
     {
         var convertedArguments = new TElement[elementArrayArgument.Count];
 
@@ -53,7 +53,7 @@ internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPatte
         return convertedArguments;
     }
 
-    private OneOf<Error, TElement[]> MatchObjectArray(IReadOnlyList<object> objectArrayArgument)
+    private OneOf<Error, IList<TElement>> MatchObjectArray(IReadOnlyList<object> objectArrayArgument)
     {
         var convertedArguments = new TElement[objectArrayArgument.Count];
 

@@ -6,12 +6,13 @@ using OneOf;
 using OneOf.Types;
 
 using System;
+using System.Collections.Generic;
 
 using Xunit;
 
 public sealed class TryMatch
 {
-    private static OneOf<Error, TElement[]?> Target<TElement>(IArgumentPattern<TElement[]?> pattern, object? argument) => pattern.TryMatch(argument);
+    private static OneOf<Error, IList<TElement>?> Target<TElement>(IArgumentPattern<IList<TElement>?> pattern, object? argument) => pattern.TryMatch(argument);
 
     [Fact]
     public void Empty_ResultsInMatch() => ResultsInMatch(Mock.Of<IArgumentPattern<object>>(), Array.Empty<object>(), Array.Empty<object>());
@@ -73,7 +74,7 @@ public sealed class TryMatch
     }
 
     [AssertionMethod]
-    private static void ResultsInMatch<TElement>(IArgumentPattern<TElement> elementPattern, TElement[]? expected, object? argument)
+    private static void ResultsInMatch<TElement>(IArgumentPattern<TElement> elementPattern, IList<TElement>? expected, object? argument)
     {
         var context = PatternContext<TElement>.Create(elementPattern);
 
