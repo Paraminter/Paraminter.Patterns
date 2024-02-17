@@ -2,9 +2,6 @@
 
 using Moq;
 
-using OneOf;
-using OneOf.Types;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -12,7 +9,7 @@ using Xunit;
 
 public sealed class TryMatch
 {
-    private static OneOf<Error, TEnum> Target<TEnum>(IArgumentPattern<TEnum> pattern, object? argument) => pattern.TryMatch(argument);
+    private static PatternMatchResult<TEnum> Target<TEnum>(IArgumentPattern<TEnum> pattern, object? argument) => pattern.TryMatch(argument);
 
     [Fact]
     public void StringSplitOptions_StringSplitOptions_ResultsInMatch() => ResultsInMatch(StringSplitOptions.TrimEntries, StringSplitOptions.TrimEntries);
@@ -87,7 +84,7 @@ public sealed class TryMatch
 
         var result = Target(context.Pattern, argument);
 
-        Assert.Equal(expected, result);
+        Assert.Equal(expected, result.GetMatchedArgument());
     }
 
     [AssertionMethod]
@@ -97,7 +94,7 @@ public sealed class TryMatch
 
         var result = Target(context.Pattern, argument);
 
-        Assert.Equal(new Error(), result);
+        Assert.False(result.WasSuccessful);
     }
 
     [SuppressMessage("Minor Code Smell", "S2344: Enumeration type names should not have \"Flags\" or \"Enum\" suffixes")]

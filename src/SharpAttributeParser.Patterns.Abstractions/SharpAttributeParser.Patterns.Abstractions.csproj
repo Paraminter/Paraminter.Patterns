@@ -17,10 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="OneOf" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\SharpAttributeParser.Patterns.Core\SharpAttributeParser.Patterns.Core.csproj" />
     </ItemGroup>
 

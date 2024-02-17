@@ -1,8 +1,5 @@
 ﻿namespace SharpAttributeParser.Patterns;
 
-using OneOf;
-using OneOf.Types;
-
 using System.Collections.Generic;
 
 internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPattern<IList<TElement>>
@@ -14,11 +11,11 @@ internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPatte
         ElementPattern = elementPattern;
     }
 
-    OneOf<Error, IList<TElement>> IArgumentPattern<IList<TElement>>.TryMatch(object? argument)
+    PatternMatchResult<IList<TElement>> IArgumentPattern<IList<TElement>>.TryMatch(object? argument)
     {
         if (argument is null)
         {
-            return new Error();
+            return new();
         }
 
         if (argument is TElement[] elementArrayArgument)
@@ -31,44 +28,44 @@ internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPatte
             return MatchObjectArray(objectArrayArgument);
         }
 
-        return new Error();
+        return new();
     }
 
-    private OneOf<Error, IList<TElement>> MatchElementArray(IReadOnlyList<TElement> elementArrayArgument)
+    private PatternMatchResult<IList<TElement>> MatchElementArray(IReadOnlyList<TElement> elementArrayArgument)
     {
         var convertedArguments = new TElement[elementArrayArgument.Count];
 
         for (var i = 0; i < convertedArguments.Length; i++)
         {
-            var convertedArgument = ElementPattern.TryMatch(elementArrayArgument[i]);
+            var elementResult = ElementPattern.TryMatch(elementArrayArgument[i]);
 
-            if (convertedArgument.IsT0)
+            if (elementResult.WasSuccessful is false)
             {
-                return new Error();
+                return new();
             }
 
-            convertedArguments[i] = convertedArgument.AsT1;
+            convertedArguments[i] = elementResult.GetMatchedArgument();
         }
 
-        return convertedArguments;
+        return new(convertedArguments);
     }
 
-    private OneOf<Error, IList<TElement>> MatchObjectArray(IReadOnlyList<object> objectArrayArgument)
+    private PatternMatchResult<IList<TElement>> MatchObjectArray(IReadOnlyList<object> objectArrayArgument)
     {
         var convertedArguments = new TElement[objectArrayArgument.Count];
 
         for (var i = 0; i < convertedArguments.Length; i++)
         {
-            var convertedArgument = ElementPattern.TryMatch(objectArrayArgument[i]);
+            var elementResult = ElementPattern.TryMatch(objectArrayArgument[i]);
 
-            if (convertedArgument.IsT0)
+            if (elementResult.WasSuccessful is false)
             {
-                return new Error();
+                return new();
             }
 
-            convertedArguments[i] = convertedArgument.AsT1;
+            convertedArguments[i] = elementResult.GetMatchedArgument();
         }
 
-        return convertedArguments;
+        return new(convertedArguments);
     }
 }

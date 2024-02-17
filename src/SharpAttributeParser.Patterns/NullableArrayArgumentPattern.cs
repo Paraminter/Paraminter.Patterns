@@ -1,8 +1,5 @@
 ﻿namespace SharpAttributeParser.Patterns;
 
-using OneOf;
-using OneOf.Types;
-
 using System.Collections.Generic;
 
 internal sealed class NullableArrayArgumentPattern<TElement> : IArgumentPattern<IList<TElement>?>
@@ -14,17 +11,20 @@ internal sealed class NullableArrayArgumentPattern<TElement> : IArgumentPattern<
         NonNullableCollectionPattern = nonNullableCollectionPattern;
     }
 
-    OneOf<Error, IList<TElement>?> IArgumentPattern<IList<TElement>?>.TryMatch(object? argument)
+    PatternMatchResult<IList<TElement>?> IArgumentPattern<IList<TElement>?>.TryMatch(object? argument)
     {
         if (argument is null)
         {
-            return OneOf<Error, IList<TElement>?>.FromT1(null);
+            return new(null);
         }
 
-        return NonNullableCollectionPattern.TryMatch(argument).Match
-        (
-            static (error) => error,
-            OneOf<Error, IList<TElement>?>.FromT1
-        );
+        var nonNullableResult = NonNullableCollectionPattern.TryMatch(argument);
+
+        if (nonNullableResult.WasSuccessful is false)
+        {
+            return new();
+        }
+
+        return new(nonNullableResult.GetMatchedArgument());
     }
 }

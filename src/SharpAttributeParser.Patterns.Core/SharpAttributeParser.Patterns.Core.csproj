@@ -12,8 +12,4 @@
         </Description>
     </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="OneOf" />
-    </ItemGroup>
-
 </Project>

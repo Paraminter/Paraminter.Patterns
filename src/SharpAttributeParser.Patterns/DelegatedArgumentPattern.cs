@@ -1,18 +1,15 @@
 ﻿namespace SharpAttributeParser.Patterns;
 
-using OneOf;
-using OneOf.Types;
-
 using System;
 
 internal sealed class DelegatedArgumentPattern<T> : IArgumentPattern<T>
 {
-    private readonly Func<object?, OneOf<Error, T>> PatternDelegate;
+    private readonly Func<object?, PatternMatchResult<T>> PatternDelegate;
 
-    public DelegatedArgumentPattern(Func<object?, OneOf<Error, T>> patternDelegate)
+    public DelegatedArgumentPattern(Func<object?, PatternMatchResult<T>> patternDelegate)
     {
         PatternDelegate = patternDelegate;
     }
 
-    OneOf<Error, T> IArgumentPattern<T>.TryMatch(object? argument) => PatternDelegate(argument);
+    PatternMatchResult<T> IArgumentPattern<T>.TryMatch(object? argument) => PatternDelegate(argument);
 }

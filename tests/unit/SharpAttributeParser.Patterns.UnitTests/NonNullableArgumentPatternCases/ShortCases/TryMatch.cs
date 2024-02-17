@@ -2,14 +2,11 @@
 
 using Moq;
 
-using OneOf;
-using OneOf.Types;
-
 using Xunit;
 
 public sealed class TryMatch
 {
-    private static OneOf<Error, short> Target(IArgumentPattern<short> pattern, object? argument) => pattern.TryMatch(argument);
+    private static PatternMatchResult<short> Target(IArgumentPattern<short> pattern, object? argument) => pattern.TryMatch(argument);
 
     private static readonly PatternContext Context = PatternContext.Create();
 
@@ -39,7 +36,7 @@ public sealed class TryMatch
     {
         var result = Target(Context.Pattern, argument);
 
-        Assert.Equal(expected, result);
+        Assert.Equal(expected, result.GetMatchedArgument());
     }
 
     [AssertionMethod]
@@ -47,6 +44,6 @@ public sealed class TryMatch
     {
         var result = Target(Context.Pattern, argument);
 
-        Assert.Equal(new Error(), result);
+        Assert.False(result.WasSuccessful);
     }
 }

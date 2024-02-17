@@ -2,9 +2,6 @@
 
 using Moq;
 
-using OneOf;
-using OneOf.Types;
-
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +9,7 @@ using Xunit;
 
 public sealed class TryMatch
 {
-    private static OneOf<Error, IList<TElement>> Target<TElement>(IArgumentPattern<IList<TElement>> pattern, object? argument) => pattern.TryMatch(argument);
+    private static PatternMatchResult<IList<TElement>> Target<TElement>(IArgumentPattern<IList<TElement>> pattern, object? argument) => pattern.TryMatch(argument);
 
     [Fact]
     public void Empty_ResultsInMatch() => ResultsInMatch(Mock.Of<IArgumentPattern<object>>(), Array.Empty<object>(), Array.Empty<object>());
@@ -21,13 +18,13 @@ public sealed class TryMatch
     public void ResultReturningElementPattern_UsesElementPatternAndResultsInMatch()
     {
         var inputArgument = Mock.Of<object>();
-        var outputArgument = Mock.Of<object>();
+        PatternMatchResult<object> outputArgument = new(Mock.Of<object>());
 
         Mock<IArgumentPattern<object>> elementPatternMock = new();
 
         elementPatternMock.Setup(static (pattern) => pattern.TryMatch(It.IsAny<object?>())).Returns(outputArgument);
 
-        ResultsInMatch(elementPatternMock.Object, new[] { outputArgument, outputArgument }, new[] { inputArgument, inputArgument });
+        ResultsInMatch(elementPatternMock.Object, new[] { outputArgument.GetMatchedArgument(), outputArgument.GetMatchedArgument() }, new[] { inputArgument, inputArgument });
 
         elementPatternMock.Verify((pattern) => pattern.TryMatch(inputArgument), Times.Exactly(2));
     }
@@ -38,9 +35,11 @@ public sealed class TryMatch
     [Fact]
     public void ErrorReturningElementPattern_ResultsInError()
     {
+        PatternMatchResult<object> outputArgument = new();
+
         Mock<IArgumentPattern<object>> elementPatternMock = new();
 
-        elementPatternMock.Setup(static (pattern) => pattern.TryMatch(It.IsAny<object?>())).Returns(new Error());
+        elementPatternMock.Setup(static (pattern) => pattern.TryMatch(It.IsAny<object?>())).Returns(outputArgument);
 
         ResultsInError(elementPatternMock.Object, new[] { Mock.Of<object>() });
     }
@@ -52,7 +51,7 @@ public sealed class TryMatch
 
         var result = Target(context.Pattern, argument);
 
-        Assert.Equal(expected, result.AsT1);
+        Assert.Equal(expected, result.GetMatchedArgument());
     }
 
     [AssertionMethod]
@@ -62,6 +61,6 @@ public sealed class TryMatch
 
         var result = Target(context.Pattern, argument);
 
-        Assert.Equal(new Error(), result);
+        Assert.False(result.WasSuccessful);
     }
 }

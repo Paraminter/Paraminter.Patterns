@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpAttributeParser.Patter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpAttributeParser.Patterns.UnitTests", "tests\unit\SharpAttributeParser.Patterns.UnitTests\SharpAttributeParser.Patterns.UnitTests.csproj", "{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpAttributeParser.Patterns.Core.UnitTests", "tests\unit\SharpAttributeParser.Patterns.Core.UnitTests\SharpAttributeParser.Patterns.Core.UnitTests.csproj", "{D9D280BF-5F41-44EA-9F54-1BFC9C998284}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D6384D6-5A9A-4E5B-A282-AB0695600EFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9D280BF-5F41-44EA-9F54-1BFC9C998284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D280BF-5F41-44EA-9F54-1BFC9C998284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D280BF-5F41-44EA-9F54-1BFC9C998284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D280BF-5F41-44EA-9F54-1BFC9C998284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
