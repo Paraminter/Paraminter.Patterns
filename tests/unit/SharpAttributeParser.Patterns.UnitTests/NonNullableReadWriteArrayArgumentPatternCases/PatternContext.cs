@@ -1,4 +1,4 @@
-﻿namespace SharpAttributeParser.Patterns.NonNullableArrayArgumentPatternCases;
+﻿namespace SharpAttributeParser.Patterns.NonNullableReadWriteArrayArgumentPatternCases;
 
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ internal sealed class PatternContext<TElement>
 {
     public static PatternContext<TElement> Create(IArgumentPattern<TElement> elementPattern)
     {
-        var pattern = ((INonNullableArrayArgumentPatternFactory)new NonNullableArrayArgumentPatternFactory()).Create(elementPattern);
+        var pattern = ((INonNullableReadWriteArrayArgumentPatternFactory)new NonNullableReadWriteArrayArgumentPatternFactory()).Create(elementPattern);
 
         return new(pattern);
     }

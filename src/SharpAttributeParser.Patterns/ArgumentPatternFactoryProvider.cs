@@ -25,19 +25,19 @@ public sealed class ArgumentPatternFactoryProvider : IArgumentPatternFactoryProv
     private readonly IArrayArgumentPatternFactoryProvider ArrayFactoryProvider;
 
     /// <summary>Instantiates a <see cref="ArgumentPatternFactoryProvider"/>, providing factories of <see cref="IArgumentPattern{T}"/>.</summary>
-    /// <param name="boolArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="bool"/> arguments.</param>
-    /// <param name="byteArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="byte"/> arguments.</param>
-    /// <param name="sbyteArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="sbyte"/> arguments.</param>
-    /// <param name="charArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="char"/> arguments.</param>
-    /// <param name="shortArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="short"/> arguments.</param>
-    /// <param name="ushortArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="ushort"/> arguments.</param>
-    /// <param name="intArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="int"/> arguments.</param>
-    /// <param name="uintArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="uint"/> arguments.</param>
-    /// <param name="longArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="long"/> arguments.</param>
-    /// <param name="ulongArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="ulong"/> arguments.</param>
-    /// <param name="floatArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="float"/> arguments.</param>
-    /// <param name="doubleArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching <see cref="double"/> arguments.</param>
-    /// <param name="enumArgumentPatternFactory">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching enum arguments.</param>
+    /// <param name="boolArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="bool"/> arguments.</param>
+    /// <param name="byteArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="byte"/> arguments.</param>
+    /// <param name="sbyteArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="sbyte"/> arguments.</param>
+    /// <param name="charArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="char"/> arguments.</param>
+    /// <param name="shortArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="short"/> arguments.</param>
+    /// <param name="ushortArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="ushort"/> arguments.</param>
+    /// <param name="intArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="int"/> arguments.</param>
+    /// <param name="uintArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="uint"/> arguments.</param>
+    /// <param name="longArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="long"/> arguments.</param>
+    /// <param name="ulongArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="ulong"/> arguments.</param>
+    /// <param name="floatArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="float"/> arguments.</param>
+    /// <param name="doubleArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching <see cref="double"/> arguments.</param>
+    /// <param name="enumArgumentPatternFactory">The factory of <see cref="IArgumentPattern{T}"/> matching enum arguments.</param>
     /// <param name="stringFactoryProvider">Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="string"/> arguments.</param>
     /// <param name="objectFactoryProvider">Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="object"/> arguments.</param>
     /// <param name="typeFactoryProvider">Provides factories of <see cref="IArgumentPattern{T}"/> matching <see cref="Type"/> arguments.</param>

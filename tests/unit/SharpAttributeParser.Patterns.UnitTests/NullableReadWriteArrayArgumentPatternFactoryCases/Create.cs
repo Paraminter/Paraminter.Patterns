@@ -1,4 +1,4 @@
-﻿namespace SharpAttributeParser.Patterns.NullableArrayArgumentPatternFactoryCases;
+﻿namespace SharpAttributeParser.Patterns.NullableReadWriteArrayArgumentPatternFactoryCases;
 
 using Moq;
 
@@ -9,7 +9,7 @@ using Xunit;
 
 public sealed class Create
 {
-    private static IArgumentPattern<IList<TElement>?> Target<TElement>(INullableArrayArgumentPatternFactory factory, IArgumentPattern<TElement> elementPattern) => factory.Create(elementPattern);
+    private static IArgumentPattern<IList<TElement>?> Target<TElement>(INullableReadWriteArrayArgumentPatternFactory factory, IArgumentPattern<TElement> elementPattern) => factory.Create(elementPattern);
 
     private static readonly FactoryContext Context = FactoryContext.Create();
 

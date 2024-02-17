@@ -1,4 +1,4 @@
-﻿namespace SharpAttributeParser.Patterns.NonNullableArrayArgumentPatternCases;
+﻿namespace SharpAttributeParser.Patterns.NonNullableReadOnlyArrayArgumentPatternCases;
 
 using Moq;
 
@@ -9,7 +9,7 @@ using Xunit;
 
 public sealed class TryMatch
 {
-    private static PatternMatchResult<IList<TElement>> Target<TElement>(IArgumentPattern<IList<TElement>> pattern, object? argument) => pattern.TryMatch(argument);
+    private static PatternMatchResult<IReadOnlyList<TElement>> Target<TElement>(IArgumentPattern<IReadOnlyList<TElement>> pattern, object? argument) => pattern.TryMatch(argument);
 
     [Fact]
     public void Empty_ResultsInMatch() => ResultsInMatch(Mock.Of<IArgumentPattern<object>>(), Array.Empty<object>(), Array.Empty<object>());

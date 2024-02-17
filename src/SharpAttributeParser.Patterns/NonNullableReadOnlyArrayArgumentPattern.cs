@@ -2,16 +2,16 @@
 
 using System.Collections.Generic;
 
-internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPattern<IList<TElement>>
+internal sealed class NonNullableReadOnlyArrayArgumentPattern<TElement> : IArgumentPattern<IReadOnlyList<TElement>>
 {
     private readonly IArgumentPattern<TElement> ElementPattern;
 
-    public NonNullableArrayArgumentPattern(IArgumentPattern<TElement> elementPattern)
+    public NonNullableReadOnlyArrayArgumentPattern(IArgumentPattern<TElement> elementPattern)
     {
         ElementPattern = elementPattern;
     }
 
-    PatternMatchResult<IList<TElement>> IArgumentPattern<IList<TElement>>.TryMatch(object? argument)
+    PatternMatchResult<IReadOnlyList<TElement>> IArgumentPattern<IReadOnlyList<TElement>>.TryMatch(object? argument)
     {
         if (argument is null)
         {
@@ -31,7 +31,7 @@ internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPatte
         return new();
     }
 
-    private PatternMatchResult<IList<TElement>> MatchElementArray(IReadOnlyList<TElement> elementArrayArgument)
+    private PatternMatchResult<IReadOnlyList<TElement>> MatchElementArray(IReadOnlyList<TElement> elementArrayArgument)
     {
         var convertedArguments = new TElement[elementArrayArgument.Count];
 
@@ -50,7 +50,7 @@ internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPatte
         return new(convertedArguments);
     }
 
-    private PatternMatchResult<IList<TElement>> MatchObjectArray(IReadOnlyList<object> objectArrayArgument)
+    private PatternMatchResult<IReadOnlyList<TElement>> MatchObjectArray(IReadOnlyList<object> objectArrayArgument)
     {
         var convertedArguments = new TElement[objectArrayArgument.Count];
 

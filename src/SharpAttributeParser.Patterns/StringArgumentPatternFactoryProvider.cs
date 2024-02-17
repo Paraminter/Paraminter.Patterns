@@ -9,8 +9,8 @@ public sealed class StringArgumentPatternFactoryProvider : IStringArgumentPatter
     private readonly INullableStringArgumentPatternFactory Nullable;
 
     /// <summary>Instantiates a <see cref="StringArgumentPatternFactoryProvider"/>, providing factories of <see cref="IArgumentPattern{T}"/> matching <see cref="string"/> arguments.</summary>
-    /// <param name="nonNullable">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching non-nullable <see cref="string"/> arguments.</param>
-    /// <param name="nullable">The factory handling creation of <see cref="IArgumentPattern{T}"/> matching nullable <see cref="string"/> arguments.</param>
+    /// <param name="nonNullable">The factory of <see cref="IArgumentPattern{T}"/> matching non-nullable <see cref="string"/> arguments.</param>
+    /// <param name="nullable">The factory of <see cref="IArgumentPattern{T}"/> matching nullable <see cref="string"/> arguments.</param>
     public StringArgumentPatternFactoryProvider(INonNullableStringArgumentPatternFactory nonNullable, INullableStringArgumentPatternFactory nullable)
     {
         NonNullable = nonNullable ?? throw new ArgumentNullException(nameof(nonNullable));

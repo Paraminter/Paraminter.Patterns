@@ -6,20 +6,20 @@ internal sealed class ProviderContext
 {
     public static ProviderContext Create()
     {
-        var nonNullableArgumentPatternFactory = Mock.Of<INonNullableArrayArgumentPatternFactory>();
-        var nullableArgumentPatternFactory = Mock.Of<INullableArrayArgumentPatternFactory>();
+        var nonNullableArgumentPatternFactoryProvider = Mock.Of<INonNullableArrayArgumentPatternFactoryProvider>();
+        var nullableArgumentPatternFactoryProvider = Mock.Of<INullableArrayArgumentPatternFactoryProvider>();
 
-        ArrayArgumentPatternFactoryProvider provider = new(nonNullableArgumentPatternFactory, nullableArgumentPatternFactory);
+        ArrayArgumentPatternFactoryProvider provider = new(nonNullableArgumentPatternFactoryProvider, nullableArgumentPatternFactoryProvider);
 
-        return new(provider, nonNullableArgumentPatternFactory, nullableArgumentPatternFactory);
+        return new(provider, nonNullableArgumentPatternFactoryProvider, nullableArgumentPatternFactoryProvider);
     }
 
     public IArrayArgumentPatternFactoryProvider Provider { get; }
 
-    public INonNullableArrayArgumentPatternFactory NonNullable { get; }
-    public INullableArrayArgumentPatternFactory Nullable { get; }
+    public INonNullableArrayArgumentPatternFactoryProvider NonNullable { get; }
+    public INullableArrayArgumentPatternFactoryProvider Nullable { get; }
 
-    public ProviderContext(IArrayArgumentPatternFactoryProvider provider, INonNullableArrayArgumentPatternFactory nonNullable, INullableArrayArgumentPatternFactory nullable)
+    public ProviderContext(IArrayArgumentPatternFactoryProvider provider, INonNullableArrayArgumentPatternFactoryProvider nonNullable, INullableArrayArgumentPatternFactoryProvider nullable)
     {
         Provider = provider;
 

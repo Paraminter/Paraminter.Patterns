@@ -2,11 +2,11 @@
 
 using System.Collections.Generic;
 
-internal sealed class NullableArrayArgumentPattern<TElement> : IArgumentPattern<IList<TElement>?>
+internal sealed class NullableReadWriteArrayArgumentPattern<TElement> : IArgumentPattern<IList<TElement>?>
 {
     private readonly IArgumentPattern<IList<TElement>> NonNullableCollectionPattern;
 
-    public NullableArrayArgumentPattern(IArgumentPattern<IList<TElement>> nonNullableCollectionPattern)
+    public NullableReadWriteArrayArgumentPattern(IArgumentPattern<IList<TElement>> nonNullableCollectionPattern)
     {
         NonNullableCollectionPattern = nonNullableCollectionPattern;
     }
