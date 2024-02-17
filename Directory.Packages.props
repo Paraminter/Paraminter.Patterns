@@ -16,10 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageVersion Include="OneOf" Version="3.0.263" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageVersion Include="SharpAttributeParser.Common.Tests" Version="6.0.2" />
         <PackageVersion Include="SharpAttributeParser.Logo" Version="1.0.1" />
     </ItemGroup>

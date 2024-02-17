@@ -1,15 +1,12 @@
 ﻿namespace SharpAttributeParser.Patterns;
 
-using OneOf;
-using OneOf.Types;
-
 using System;
 using System.Collections.Generic;
 
 /// <inheritdoc cref="IEnumArgumentPatternFactory"/>
 public sealed class EnumArgumentPatternFactory : IEnumArgumentPatternFactory
 {
-    private static readonly IReadOnlyDictionary<Type, Func<Type, object?, OneOf<Error, object>>> PatternDelegates = new Dictionary<Type, Func<Type, object?, OneOf<Error, object>>>()
+    private static readonly IReadOnlyDictionary<Type, Func<Type, object?, PatternMatchResult<object>>> PatternDelegates = new Dictionary<Type, Func<Type, object?, PatternMatchResult<object>>>()
     {
         { typeof(byte), CreateNonGenericPatternDelegate<byte>(static (enumType, value) => Enum.ToObject(enumType, value)) },
         { typeof(sbyte), CreateNonGenericPatternDelegate<sbyte>(static (enumType, value) => Enum.ToObject(enumType, value)) },
@@ -34,35 +31,40 @@ public sealed class EnumArgumentPatternFactory : IEnumArgumentPatternFactory
         return new DelegatedArgumentPattern<TEnum>(CreateGenericPatternDelegate<TEnum>(patternDelegate));
     }
 
-    private static Func<Type, object?, OneOf<Error, object>> CreateNonGenericPatternDelegate<TUnderlying>(Func<Type, TUnderlying, object> factoryDelegate)
+    private static Func<Type, object?, PatternMatchResult<object>> CreateNonGenericPatternDelegate<TUnderlying>(Func<Type, TUnderlying, object> factoryDelegate)
     {
         return pattern;
 
-        OneOf<Error, object> pattern(Type enumType, object? argument)
+        PatternMatchResult<object> pattern(Type enumType, object? argument)
         {
-            if (argument is TUnderlying matchingArgument)
+            if (argument is not TUnderlying matchingArgument)
             {
-                return factoryDelegate(enumType, matchingArgument);
+                return new();
             }
 
-            return new Error();
+            return new(factoryDelegate(enumType, matchingArgument));
         }
     }
 
-    private static Func<object?, OneOf<Error, TEnum>> CreateGenericPatternDelegate<TEnum>(Func<Type, object?, OneOf<Error, object>> nonGenericPatternDelegate)
+    private static Func<object?, PatternMatchResult<TEnum>> CreateGenericPatternDelegate<TEnum>(Func<Type, object?, PatternMatchResult<object>> nonGenericPatternDelegate)
     {
         return pattern;
 
-        OneOf<Error, TEnum> pattern(object? argument)
+        PatternMatchResult<TEnum> pattern(object? argument)
         {
             if (argument is TEnum enumArgument)
             {
-                return enumArgument;
+                return new(enumArgument);
             }
 
-            var nonGeneric = nonGenericPatternDelegate(typeof(TEnum), argument);
+            var nonGenericResult = nonGenericPatternDelegate(typeof(TEnum), argument);
 
-            return nonGeneric.MapT1(static (enumValue) => (TEnum)enumValue);
+            if (nonGenericResult.WasSuccessful is false)
+            {
+                return new();
+            }
+
+            return new((TEnum)nonGenericResult.GetMatchedArgument());
         }
     }
 }
