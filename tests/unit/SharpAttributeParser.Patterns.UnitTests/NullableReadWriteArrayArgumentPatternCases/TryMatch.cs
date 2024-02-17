@@ -1,4 +1,4 @@
-﻿namespace SharpAttributeParser.Patterns.NullableArrayArgumentPatternCases;
+﻿namespace SharpAttributeParser.Patterns.NullableReadWriteArrayArgumentPatternCases;
 
 using Moq;
 

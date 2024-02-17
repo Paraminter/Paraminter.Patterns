@@ -4,7 +4,7 @@ using Xunit;
 
 public sealed class NonNullable
 {
-    private static INonNullableArrayArgumentPatternFactory Target(IArrayArgumentPatternFactoryProvider provider) => provider.NonNullable;
+    private static INonNullableArrayArgumentPatternFactoryProvider Target(IArrayArgumentPatternFactoryProvider provider) => provider.NonNullable;
 
     private static readonly ProviderContext Context = ProviderContext.Create();
 

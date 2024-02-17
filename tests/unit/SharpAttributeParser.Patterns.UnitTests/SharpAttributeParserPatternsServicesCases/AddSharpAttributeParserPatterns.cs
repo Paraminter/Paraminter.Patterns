@@ -46,6 +46,24 @@ public sealed class AddSharpAttributeParserPatterns
     public void IArgumentPatternFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentPatternFactoryProvider>();
 
     [Fact]
+    public void IStringArgumentPatternFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<IStringArgumentPatternFactoryProvider>();
+
+    [Fact]
+    public void IObjectArgumentPatternFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<IObjectArgumentPatternFactoryProvider>();
+
+    [Fact]
+    public void ITypeArgumentPatternFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<ITypeArgumentPatternFactoryProvider>();
+
+    [Fact]
+    public void IArrayArgumentPatternFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<IArrayArgumentPatternFactoryProvider>();
+
+    [Fact]
+    public void INullableArrayArgumentPatternFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<INullableArrayArgumentPatternFactoryProvider>();
+
+    [Fact]
+    public void INonNullableArrayArgumentPatternFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<INonNullableArrayArgumentPatternFactoryProvider>();
+
+    [Fact]
     public void IBoolArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<IBoolArgumentPatternFactory>();
 
     [Fact]
@@ -103,10 +121,16 @@ public sealed class AddSharpAttributeParserPatterns
     public void INullableTypeArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INullableTypeArgumentPatternFactory>();
 
     [Fact]
-    public void INonNullableArrayArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INonNullableArrayArgumentPatternFactory>();
+    public void INullableReadWriteArrayArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INullableReadWriteArrayArgumentPatternFactory>();
 
     [Fact]
-    public void INullableArrayArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INullableArrayArgumentPatternFactory>();
+    public void INullableReadOnlyArrayArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INullableReadWriteArrayArgumentPatternFactory>();
+
+    [Fact]
+    public void INonNullableReadWriteArrayArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INonNullableReadWriteArrayArgumentPatternFactory>();
+
+    [Fact]
+    public void INonNullableReadOnlyArrayArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INonNullableReadOnlyArrayArgumentPatternFactory>();
 
     [AssertionMethod]
     private void ServiceCanBeResolved<TService>() where TService : notnull

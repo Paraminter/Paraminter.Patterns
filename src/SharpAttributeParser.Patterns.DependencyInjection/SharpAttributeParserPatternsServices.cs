@@ -22,6 +22,8 @@ public static class SharpAttributeParserPatternsServices
         services.AddSingleton<IObjectArgumentPatternFactoryProvider, ObjectArgumentPatternFactoryProvider>();
         services.AddSingleton<ITypeArgumentPatternFactoryProvider, TypeArgumentPatternFactoryProvider>();
         services.AddSingleton<IArrayArgumentPatternFactoryProvider, ArrayArgumentPatternFactoryProvider>();
+        services.AddSingleton<INullableArrayArgumentPatternFactoryProvider, NullableArrayArgumentPatternFactoryProvider>();
+        services.AddSingleton<INonNullableArrayArgumentPatternFactoryProvider, NonNullableArrayArgumentPatternFactoryProvider>();
 
         services.AddSingleton<IBoolArgumentPatternFactory, BoolArgumentPatternFactory>();
         services.AddSingleton<IByteArgumentPatternFactory, ByteArgumentPatternFactory>();
@@ -43,8 +45,12 @@ public static class SharpAttributeParserPatternsServices
         services.AddSingleton<INullableObjectArgumentPatternFactory, NullableObjectArgumentPatternFactory>();
         services.AddSingleton<INonNullableTypeArgumentPatternFactory, NonNullableTypeArgumentPatternFactory>();
         services.AddSingleton<INullableTypeArgumentPatternFactory, NullableTypeArgumentPatternFactory>();
-        services.AddSingleton<INonNullableArrayArgumentPatternFactory, NonNullableArrayArgumentPatternFactory>();
-        services.AddSingleton<INullableArrayArgumentPatternFactory, NullableArrayArgumentPatternFactory>();
+
+        services.AddSingleton<INonNullableReadWriteArrayArgumentPatternFactory, NonNullableReadWriteArrayArgumentPatternFactory>();
+        services.AddSingleton<INonNullableReadOnlyArrayArgumentPatternFactory, NonNullableReadOnlyArrayArgumentPatternFactory>();
+
+        services.AddSingleton<INullableReadWriteArrayArgumentPatternFactory, NullableReadWriteArrayArgumentPatternFactory>();
+        services.AddSingleton<INullableReadOnlyArrayArgumentPatternFactory, NullableReadOnlyArrayArgumentPatternFactory>();
 
         return services;
     }
