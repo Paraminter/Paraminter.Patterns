@@ -1,0 +1,13 @@
+﻿namespace Attribinter.Patterns.FloatArgumentPatternFactoryCases;
+
+internal sealed class FactoryContext
+{
+    public static FactoryContext Create() => new(new FloatArgumentPatternFactory());
+
+    public FloatArgumentPatternFactory Factory { get; }
+
+    private FactoryContext(FloatArgumentPatternFactory factory)
+    {
+        Factory = factory;
+    }
+}
