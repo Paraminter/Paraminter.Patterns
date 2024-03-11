@@ -8,7 +8,7 @@
     <PropertyGroup>
         <Title>Attribinter.Patterns.Core</Title>
         <Description>
-           Provides the core definitions of 'Attribinter' patterns, used to match attribute arguments.
+           Provides the core definitions of Attribinter patterns, used to match attribute arguments.
         </Description>
     </PropertyGroup>
 
