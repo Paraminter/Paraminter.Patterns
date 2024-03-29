@@ -17,7 +17,7 @@ public static class AttribinterPatternsServices
             throw new ArgumentNullException(nameof(services));
         }
 
-        services.AddSingleton<IArgumentRecorderFactory, ArgumentRecorderFactory>();
+        services.AddTransient<IArgumentRecorderFactory, ArgumentRecorderFactory>();
 
         return services;
     }
