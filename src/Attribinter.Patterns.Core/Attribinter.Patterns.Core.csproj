@@ -2,14 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>Attribinter.Patterns</RootNamespace>
-    </PropertyGroup>
 
-    <PropertyGroup>
+        <RootNamespace>Attribinter.Patterns</RootNamespace>
+
         <Title>Attribinter.Patterns.Core</Title>
-        <Description>
-           Provides the core definitions of Attribinter patterns, used to match attribute arguments.
-        </Description>
+        <Description>Provides the core definitions of Attribinter patterns, used to match attribute arguments.</Description>
     </PropertyGroup>
 
 </Project>

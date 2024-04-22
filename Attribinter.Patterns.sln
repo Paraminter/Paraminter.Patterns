@@ -17,13 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns.Core.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns.Abstractions", "src\Attribinter.Patterns.Abstractions\Attribinter.Patterns.Abstractions.csproj", "{36057E31-A4DE-4414-975F-5057D90409F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attribinter.Patterns", "src\Attribinter.Patterns\Attribinter.Patterns.csproj", "{F6697476-12D6-4ACE-B846-4F6A8AFC8257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns", "src\Attribinter.Patterns\Attribinter.Patterns.csproj", "{F6697476-12D6-4ACE-B846-4F6A8AFC8257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attribinter.Patterns.DependencyInjection", "src\Attribinter.Patterns.DependencyInjection\Attribinter.Patterns.DependencyInjection.csproj", "{AEB5720F-5458-4016-816F-BAC5D0B9C032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns.DependencyInjection", "src\Attribinter.Patterns.DependencyInjection\Attribinter.Patterns.DependencyInjection.csproj", "{AEB5720F-5458-4016-816F-BAC5D0B9C032}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attribinter.Patterns.IntegrationTests", "tests\integration\Attribinter.Patterns.IntegrationTests\Attribinter.Patterns.IntegrationTests.csproj", "{310AFD51-AB93-491B-988D-AECF511E6231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns.IntegrationTests", "tests\integration\Attribinter.Patterns.IntegrationTests\Attribinter.Patterns.IntegrationTests.csproj", "{310AFD51-AB93-491B-988D-AECF511E6231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attribinter.Patterns.UnitTests", "tests\unit\Attribinter.Patterns.UnitTests\Attribinter.Patterns.UnitTests.csproj", "{4F97EF5F-0EAE-4FA4-9CDC-1DFE8090D49F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns.UnitTests", "tests\unit\Attribinter.Patterns.UnitTests\Attribinter.Patterns.UnitTests.csproj", "{4F97EF5F-0EAE-4FA4-9CDC-1DFE8090D49F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

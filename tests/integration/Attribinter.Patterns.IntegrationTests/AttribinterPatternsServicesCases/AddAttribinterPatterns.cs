@@ -15,43 +15,38 @@ public sealed class AddAttribinterPatterns
 {
     private static IServiceCollection Target(IServiceCollection services) => AttribinterPatternsServices.AddAttribinterPatterns(services);
 
-    private readonly IServiceProvider ServiceProvider;
-
-    public AddAttribinterPatterns()
-    {
-        HostBuilder host = new();
-
-        host.ConfigureServices(static (services) => Target(services));
-
-        ServiceProvider = host.Build().Services;
-    }
-
     [Fact]
     public void NullServiceCollection_ArgumentNullException()
     {
-        var exception = Record.Exception(() => Target(null!));
+        var result = Record.Exception(() => Target(null!));
 
-        Assert.IsType<ArgumentNullException>(exception);
+        Assert.IsType<ArgumentNullException>(result);
     }
 
     [Fact]
     public void ValidServiceCollection_ReturnsSameServiceCollection()
     {
-        var serviceCollection = Mock.Of<IServiceCollection>();
+        var services = Mock.Of<IServiceCollection>();
 
-        var actual = Target(serviceCollection);
+        var result = Target(services);
 
-        Assert.Same(serviceCollection, actual);
+        Assert.Same(services, result);
     }
 
     [Fact]
     public void IArgumentRecorderFactory_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentRecorderFactory>();
 
     [AssertionMethod]
-    private void ServiceCanBeResolved<TService>() where TService : notnull
+    private static void ServiceCanBeResolved<TService>() where TService : notnull
     {
-        var service = ServiceProvider.GetRequiredService<TService>();
+        HostBuilder host = new();
 
-        Assert.NotNull(service);
+        host.ConfigureServices(static (services) => Target(services));
+
+        var serviceProvider = host.Build().Services;
+
+        var result = serviceProvider.GetRequiredService<TService>();
+
+        Assert.NotNull(result);
     }
 }
