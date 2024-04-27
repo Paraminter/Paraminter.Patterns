@@ -8,8 +8,6 @@ using Xunit;
 
 public sealed class TryRecordData
 {
-    private static bool Target<TParameter, TIn, TOut>(IRecorderFixture<TParameter, TIn, TOut> fixture, TParameter parameter, TIn data) => fixture.Sut.TryRecordData(parameter, data);
-
     [Fact]
     public void NullParameter_ThrowsArgumentNullException()
     {
@@ -61,4 +59,6 @@ public sealed class TryRecordData
 
         Assert.True(result);
     }
+
+    private static bool Target<TParameter, TIn, TOut>(IRecorderFixture<TParameter, TIn, TOut> fixture, TParameter parameter, TIn data) => fixture.Sut.TryRecordData(parameter, data);
 }

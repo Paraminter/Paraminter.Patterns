@@ -8,8 +8,6 @@ using Xunit;
 
 public sealed class GetMatchedArgument
 {
-    private static T Target<T>(ArgumentPatternMatchResult<T> result) => result.GetMatchedArgument();
-
     [Fact]
     public void Unsuccessful_ThrowsInvalidOperationException()
     {
@@ -41,4 +39,6 @@ public sealed class GetMatchedArgument
 
         Assert.Null(result);
     }
+
+    private static T Target<T>(ArgumentPatternMatchResult<T> result) => result.GetMatchedArgument();
 }

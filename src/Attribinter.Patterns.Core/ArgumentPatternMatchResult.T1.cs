@@ -12,9 +12,11 @@ public readonly struct ArgumentPatternMatchResult<T>
     public bool Successful { get; }
 
     /// <summary>Creates a <see cref="ArgumentPatternMatchResult{T}"/> describing an unsuccessful attempt to match an argument to a <see cref="IArgumentPattern{TIn, TOut}"/>.</summary>
-    public ArgumentPatternMatchResult() : this(false, default!) { }
+    public ArgumentPatternMatchResult()
+        : this(false, default!) { }
 
-    internal ArgumentPatternMatchResult(T matchedArgument) : this(true, matchedArgument) { }
+    internal ArgumentPatternMatchResult(T matchedArgument)
+        : this(true, matchedArgument) { }
 
     private ArgumentPatternMatchResult(bool wasSuccessful, T matchedArgument)
     {

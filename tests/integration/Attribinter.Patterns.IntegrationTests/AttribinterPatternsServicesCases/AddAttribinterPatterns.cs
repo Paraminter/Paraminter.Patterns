@@ -13,8 +13,6 @@ using Xunit;
 
 public sealed class AddAttribinterPatterns
 {
-    private static IServiceCollection Target(IServiceCollection services) => AttribinterPatternsServices.AddAttribinterPatterns(services);
-
     [Fact]
     public void NullServiceCollection_ArgumentNullException()
     {
@@ -36,8 +34,11 @@ public sealed class AddAttribinterPatterns
     [Fact]
     public void IArgumentRecorderFactory_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentRecorderFactory>();
 
+    private static IServiceCollection Target(IServiceCollection services) => AttribinterPatternsServices.AddAttribinterPatterns(services);
+
     [AssertionMethod]
-    private static void ServiceCanBeResolved<TService>() where TService : notnull
+    private static void ServiceCanBeResolved<TService>()
+        where TService : notnull
     {
         HostBuilder host = new();
 
