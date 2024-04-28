@@ -9,7 +9,7 @@ public static class ArgumentPatternMatchResult
     public static ArgumentPatternMatchResult<T> CreateUnsuccessful<T>() => new();
 
     /// <summary>Creates a <see cref="ArgumentPatternMatchResult{T}"/> describing a successful attempt to match an argument to a <see cref="IArgumentPattern{TIn, TOut}"/>.</summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of the matched arguments.</typeparam>
     /// <param name="matchedArgument">The matched argument.</param>
     /// <returns>The created <see cref="ArgumentPatternMatchResult{T}"/>.</returns>
     public static ArgumentPatternMatchResult<T> CreateSuccessful<T>(T matchedArgument) => new(matchedArgument);

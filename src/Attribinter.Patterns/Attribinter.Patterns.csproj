@@ -2,14 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>Attribinter.Patterns</RootNamespace>
-    </PropertyGroup>
 
-    <PropertyGroup>
+        <RootNamespace>Attribinter.Patterns</RootNamespace>
+
         <Title>Attribinter.Patterns</Title>
-        <Description>
-            Provides components related to 'Attribinter' patterns.
-        </Description>
+        <Description>Provides components related to 'Attribinter' patterns.</Description>
     </PropertyGroup>
 
     <ItemGroup>

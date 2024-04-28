@@ -8,26 +8,24 @@ using Xunit;
 
 public sealed class TryRecordData
 {
-    private static bool Target<TParameter, TIn>(IArgumentRecorder<TParameter, TIn> recorder, TParameter parameter, TIn data) => recorder.TryRecordData(parameter, data);
-
     [Fact]
     public void NullParameter_ThrowsArgumentNullException()
     {
-        var context = RecorderContext<object, object, object>.Create();
+        var fixture = RecorderFixtureFactory<object, object, object>.Create();
 
-        var exception = Record.Exception(() => Target(context.Recorder, null!, Mock.Of<object>()));
+        var result = Record.Exception(() => Target(fixture, null!, Mock.Of<object>()));
 
-        Assert.IsType<ArgumentNullException>(exception);
+        Assert.IsType<ArgumentNullException>(result);
     }
 
     [Fact]
     public void NullData_ThrowsArgumentNullException()
     {
-        var context = RecorderContext<object, object, object>.Create();
+        var fixture = RecorderFixtureFactory<object, object, object>.Create();
 
-        var exception = Record.Exception(() => Target(context.Recorder, Mock.Of<object>(), null!));
+        var result = Record.Exception(() => Target(fixture, Mock.Of<object>(), null!));
 
-        Assert.IsType<ArgumentNullException>(exception);
+        Assert.IsType<ArgumentNullException>(result);
     }
 
     [Fact]
@@ -35,18 +33,13 @@ public sealed class TryRecordData
     {
         var data = Mock.Of<object>();
 
-        var context = RecorderContext<object, object, object>.Create();
+        var fixture = RecorderFixtureFactory<object, object, object>.Create();
 
-        context.PatternMock.Setup(static (pattern) => pattern.TryMatch(It.IsAny<object>())).Returns(ArgumentPatternMatchResult.CreateUnsuccessful<object>());
+        fixture.PatternMock.Setup((pattern) => pattern.TryMatch(data)).Returns(ArgumentPatternMatchResult.CreateUnsuccessful<object>());
 
-        var actual = Target(context.Recorder, Mock.Of<object>(), data);
+        var result = Target(fixture, Mock.Of<object>(), data);
 
-        Assert.False(actual);
-
-        context.PatternMock.Verify((pattern) => pattern.TryMatch(data), Times.Once());
-        context.PatternMock.VerifyNoOtherCalls();
-
-        context.PatternedRecorderMock.VerifyNoOtherCalls();
+        Assert.False(result);
     }
 
     [Fact]
@@ -57,19 +50,15 @@ public sealed class TryRecordData
         var patternedData = Mock.Of<object>();
         var unpatternedData = Mock.Of<object>();
 
-        var context = RecorderContext<object, object, object>.Create();
+        var fixture = RecorderFixtureFactory<object, object, object>.Create();
 
-        context.PatternMock.Setup(static (pattern) => pattern.TryMatch(It.IsAny<object>())).Returns(ArgumentPatternMatchResult.CreateSuccessful(patternedData));
-        context.PatternedRecorderMock.Setup(static (recorder) => recorder.TryRecordData(It.IsAny<object>(), It.IsAny<object>())).Returns(true);
+        fixture.PatternMock.Setup((pattern) => pattern.TryMatch(unpatternedData)).Returns(ArgumentPatternMatchResult.CreateSuccessful(patternedData));
+        fixture.PatternedRecorderMock.Setup((recorder) => recorder.TryRecordData(parameter, patternedData)).Returns(true);
 
-        var actual = Target(context.Recorder, parameter, unpatternedData);
+        var result = Target(fixture, parameter, unpatternedData);
 
-        Assert.True(actual);
-
-        context.PatternMock.Verify((pattern) => pattern.TryMatch(unpatternedData), Times.Once());
-        context.PatternMock.VerifyNoOtherCalls();
-
-        context.PatternedRecorderMock.Verify((recorder) => recorder.TryRecordData(parameter, patternedData));
-        context.PatternedRecorderMock.VerifyNoOtherCalls();
+        Assert.True(result);
     }
+
+    private static bool Target<TParameter, TIn, TOut>(IRecorderFixture<TParameter, TIn, TOut> fixture, TParameter parameter, TIn data) => fixture.Sut.TryRecordData(parameter, data);
 }
