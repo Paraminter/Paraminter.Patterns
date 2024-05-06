@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+
+        <RootNamespace>Paraminter.Patterns</RootNamespace>
+
+        <Title>Paraminter.Patterns.Abstractions</Title>
+        <Description>Provides abstractions of components related to 'Paraminter' patterns.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Paraminter.Core" />
+
+        <ProjectReference Include="..\Paraminter.Patterns.Core\Paraminter.Patterns.Core.csproj" />
+    </ItemGroup>
+
+</Project>
