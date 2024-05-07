@@ -21,7 +21,6 @@ public static class ParaminterPatternsServices
 
         services.AddTransient<ISuccessfulArgumentPatternMatchResultFactory, SuccessfulArgumentPatternMatchResultFactory>();
         services.AddTransient<IUnsuccessfulArgumentPatternMatchResultFactory, UnsuccessfulArgumentPatternMatchResultFactory>();
-        services.AddTransient<IArgumentPatternMatchResultFactory, ArgumentPatternMatchResultFactory>();
         services.AddTransient<IArgumentPatternMatchResultFactoryProvider, ArgumentPatternMatchResultFactoryProvider>();
 
         return services;

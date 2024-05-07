@@ -41,9 +41,6 @@ public sealed class AddParaminterPatterns
     public void IUnsuccessfulArgumentPatternMatchResultFactory_ServiceCanBeResolved() => ServiceCanBeResolved<IUnsuccessfulArgumentPatternMatchResultFactory>();
 
     [Fact]
-    public void IArgumentPatternMatchResultFactory_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentPatternMatchResultFactory>();
-
-    [Fact]
     public void IArgumentPatternMatchResultFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentPatternMatchResultFactoryProvider>();
 
     private static IServiceCollection Target(IServiceCollection services) => ParaminterPatternsServices.AddParaminterPatterns(services);
