@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class Unsuccessful
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class Unsuccessful
     }
 
     private IUnsuccessfulArgumentPatternMatchResultFactory Target() => Fixture.Sut.Unsuccessful;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

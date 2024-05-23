@@ -6,6 +6,8 @@ using Xunit;
 
 public sealed class Create
 {
+    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
+
     [Fact]
     public void NullMatchedArgument_ReturnsResult()
     {
@@ -23,6 +25,4 @@ public sealed class Create
     }
 
     private IArgumentPatternMatchResult<TMatchedArgument> Target<TMatchedArgument>(TMatchedArgument matchedArgument) => Fixture.Sut.Create(matchedArgument);
-
-    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 }
