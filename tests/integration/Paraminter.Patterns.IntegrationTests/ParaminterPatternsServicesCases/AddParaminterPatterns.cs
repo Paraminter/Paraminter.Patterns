@@ -3,34 +3,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using Moq;
-
 using Paraminter.Patterns;
-
-using System;
 
 using Xunit;
 
 public sealed class AddParaminterPatterns
 {
-    [Fact]
-    public void NullServiceCollection_ArgumentNullException()
-    {
-        var result = Record.Exception(() => Target(null!));
-
-        Assert.IsType<ArgumentNullException>(result);
-    }
-
-    [Fact]
-    public void ValidServiceCollection_ReturnsSameServiceCollection()
-    {
-        var services = Mock.Of<IServiceCollection>();
-
-        var result = Target(services);
-
-        Assert.Same(services, result);
-    }
-
     [Fact]
     public void IArgumentDataRecorderFactory_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentDataRecorderFactory>();
 
@@ -43,7 +21,7 @@ public sealed class AddParaminterPatterns
     [Fact]
     public void IArgumentPatternMatchResultFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentPatternMatchResultFactoryProvider>();
 
-    private static IServiceCollection Target(IServiceCollection services) => ParaminterPatternsServices.AddParaminterPatterns(services);
+    private static void Target(IServiceCollection services) => ParaminterPatternsServices.AddParaminterPatterns(services);
 
     [AssertionMethod]
     private static void ServiceCanBeResolved<TService>()
