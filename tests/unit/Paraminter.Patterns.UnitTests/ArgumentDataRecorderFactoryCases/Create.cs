@@ -8,8 +8,6 @@ using Xunit;
 
 public sealed class Create
 {
-    private IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> Target<TParameter, TUnpatternedArgumentData, TPatternedArgumentData>(IArgumentDataRecorder<TParameter, TPatternedArgumentData> patternedRecorder, IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData> pattern) => Fixture.Sut.Create(patternedRecorder, pattern);
-
     private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 
     [Fact]
@@ -35,4 +33,6 @@ public sealed class Create
 
         Assert.NotNull(result);
     }
+
+    private IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> Target<TParameter, TUnpatternedArgumentData, TPatternedArgumentData>(IArgumentDataRecorder<TParameter, TPatternedArgumentData> patternedRecorder, IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData> pattern) => Fixture.Sut.Create(patternedRecorder, pattern);
 }
