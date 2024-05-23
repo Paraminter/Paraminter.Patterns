@@ -11,8 +11,6 @@
 
         <PackageReference Include="Moq" />
 
-        <PackageReference Include="Paraminter.Tests.Common" />
-
         <PackageReference Include="xunit" />
         <PackageReference Include="xunit.runner.visualstudio" />
 
