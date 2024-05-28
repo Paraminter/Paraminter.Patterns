@@ -14,7 +14,8 @@ public sealed class WasSuccessful
         Assert.True(result);
     }
 
-    private static bool Target<TMatchedArgument>(IResultFixture<TMatchedArgument> fixture)
+    private static bool Target<TMatchedArgument>(
+        IResultFixture<TMatchedArgument> fixture)
         where TMatchedArgument : class
     {
         return fixture.Sut.WasSuccessful;

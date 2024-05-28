@@ -10,5 +10,7 @@ public interface IArgumentDataRecorderFactory
     /// <param name="patternedRecorder">The pattern-dependent <see cref="IArgumentDataRecorder{TParameter, TArgumentData}"/>.</param>
     /// <param name="pattern">The pattern of the arguments handled by the pattern-dependent <see cref="IArgumentDataRecorder{TParameter, TArgumentData}"/>.</param>
     /// <returns>The created, pattern-independent, <see cref="IArgumentDataRecorder{TParameter, TArgumentData}"/>.</returns>
-    public abstract IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> Create<TParameter, TUnpatternedArgumentData, TPatternedArgumentData>(IArgumentDataRecorder<TParameter, TPatternedArgumentData> patternedRecorder, IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData> pattern);
+    public abstract IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> Create<TParameter, TUnpatternedArgumentData, TPatternedArgumentData>(
+        IArgumentDataRecorder<TParameter, TPatternedArgumentData> patternedRecorder,
+        IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData> pattern);
 }

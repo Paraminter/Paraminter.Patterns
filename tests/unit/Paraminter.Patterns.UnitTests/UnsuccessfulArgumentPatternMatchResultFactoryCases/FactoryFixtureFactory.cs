@@ -9,11 +9,13 @@ internal static class FactoryFixtureFactory
         return new FactoryFixture(sut);
     }
 
-    private sealed class FactoryFixture : IFactoryFixture
+    private sealed class FactoryFixture
+        : IFactoryFixture
     {
         private readonly IUnsuccessfulArgumentPatternMatchResultFactory Sut;
 
-        public FactoryFixture(IUnsuccessfulArgumentPatternMatchResultFactory sut)
+        public FactoryFixture(
+            IUnsuccessfulArgumentPatternMatchResultFactory sut)
         {
             Sut = sut;
         }

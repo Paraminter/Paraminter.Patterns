@@ -16,14 +16,18 @@ internal static class RecorderFixtureFactory<TParameter, TUnpatternedArgumentDat
         return new RecorderFixture(sut, patternedRecorderMock, patternMock);
     }
 
-    private sealed class RecorderFixture : IRecorderFixture<TParameter, TUnpatternedArgumentData, TPatternedArgumentData>
+    private sealed class RecorderFixture
+        : IRecorderFixture<TParameter, TUnpatternedArgumentData, TPatternedArgumentData>
     {
         private readonly IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> Sut;
 
         private readonly Mock<IArgumentDataRecorder<TParameter, TPatternedArgumentData>> PatternedRecorderMock;
         private readonly Mock<IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData>> PatternMock;
 
-        public RecorderFixture(IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> sut, Mock<IArgumentDataRecorder<TParameter, TPatternedArgumentData>> patternedRecorderMock, Mock<IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData>> patternMock)
+        public RecorderFixture(
+            IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> sut,
+            Mock<IArgumentDataRecorder<TParameter, TPatternedArgumentData>> patternedRecorderMock,
+            Mock<IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData>> patternMock)
         {
             Sut = sut;
 

@@ -7,5 +7,6 @@ public interface ISuccessfulArgumentPatternMatchResultFactory
     /// <typeparam name="TMatchedArgument">The type of the matched argument.</typeparam>
     /// <param name="matchedArgument">The matched argument.</param>
     /// <returns>The created <see cref="IArgumentPatternMatchResult{TMatchedArgument}"/>.</returns>
-    public abstract IArgumentPatternMatchResult<TMatchedArgument> Create<TMatchedArgument>(TMatchedArgument matchedArgument);
+    public abstract IArgumentPatternMatchResult<TMatchedArgument> Create<TMatchedArgument>(
+        TMatchedArgument matchedArgument);
 }
