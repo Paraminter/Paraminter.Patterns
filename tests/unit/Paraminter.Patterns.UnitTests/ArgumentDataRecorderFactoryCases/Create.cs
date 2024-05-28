@@ -34,5 +34,10 @@ public sealed class Create
         Assert.NotNull(result);
     }
 
-    private IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> Target<TParameter, TUnpatternedArgumentData, TPatternedArgumentData>(IArgumentDataRecorder<TParameter, TPatternedArgumentData> patternedRecorder, IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData> pattern) => Fixture.Sut.Create(patternedRecorder, pattern);
+    private IArgumentDataRecorder<TParameter, TUnpatternedArgumentData> Target<TParameter, TUnpatternedArgumentData, TPatternedArgumentData>(
+        IArgumentDataRecorder<TParameter, TPatternedArgumentData> patternedRecorder,
+        IArgumentPattern<TUnpatternedArgumentData, TPatternedArgumentData> pattern)
+    {
+        return Fixture.Sut.Create(patternedRecorder, pattern);
+    }
 }

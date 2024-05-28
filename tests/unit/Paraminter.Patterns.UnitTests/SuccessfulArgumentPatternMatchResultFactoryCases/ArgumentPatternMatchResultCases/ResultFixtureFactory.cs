@@ -16,14 +16,17 @@ internal static class ResultFixtureFactory
         return new ResultFixture<TMatchedArgument>(sut, matchedArgumentMock);
     }
 
-    private sealed class ResultFixture<TMatchedArgument> : IResultFixture<TMatchedArgument>
+    private sealed class ResultFixture<TMatchedArgument>
+        : IResultFixture<TMatchedArgument>
         where TMatchedArgument : class
     {
         private readonly IArgumentPatternMatchResult<TMatchedArgument> Sut;
 
         private readonly Mock<TMatchedArgument> MatchedArgumentMock;
 
-        public ResultFixture(IArgumentPatternMatchResult<TMatchedArgument> sut, Mock<TMatchedArgument> matchedArgumentMock)
+        public ResultFixture(
+            IArgumentPatternMatchResult<TMatchedArgument> sut,
+            Mock<TMatchedArgument> matchedArgumentMock)
         {
             Sut = sut;
 

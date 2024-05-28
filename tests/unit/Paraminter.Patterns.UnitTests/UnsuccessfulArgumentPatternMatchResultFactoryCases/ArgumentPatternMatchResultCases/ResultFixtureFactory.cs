@@ -11,11 +11,13 @@ internal static class ResultFixtureFactory
         return new ResultFixture<TMatchedArgument>(sut);
     }
 
-    private sealed class ResultFixture<TMatchedArgument> : IResultFixture<TMatchedArgument>
+    private sealed class ResultFixture<TMatchedArgument>
+        : IResultFixture<TMatchedArgument>
     {
         private readonly IArgumentPatternMatchResult<TMatchedArgument> Sut;
 
-        public ResultFixture(IArgumentPatternMatchResult<TMatchedArgument> sut)
+        public ResultFixture(
+            IArgumentPatternMatchResult<TMatchedArgument> sut)
         {
             Sut = sut;
         }

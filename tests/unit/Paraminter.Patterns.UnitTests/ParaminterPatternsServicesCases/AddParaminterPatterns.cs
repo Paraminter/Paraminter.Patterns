@@ -30,5 +30,9 @@ public sealed class AddParaminterPatterns
         Assert.Same(services, result);
     }
 
-    private static IServiceCollection Target(IServiceCollection services) => ParaminterPatternsServices.AddParaminterPatterns(services);
+    private static IServiceCollection Target(
+        IServiceCollection services)
+    {
+        return ParaminterPatternsServices.AddParaminterPatterns(services);
+    }
 }

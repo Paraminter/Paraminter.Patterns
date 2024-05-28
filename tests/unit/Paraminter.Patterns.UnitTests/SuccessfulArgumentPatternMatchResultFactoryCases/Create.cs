@@ -24,5 +24,9 @@ public sealed class Create
         Assert.NotNull(result);
     }
 
-    private IArgumentPatternMatchResult<TMatchedArgument> Target<TMatchedArgument>(TMatchedArgument matchedArgument) => Fixture.Sut.Create(matchedArgument);
+    private IArgumentPatternMatchResult<TMatchedArgument> Target<TMatchedArgument>(
+        TMatchedArgument matchedArgument)
+    {
+        return Fixture.Sut.Create(matchedArgument);
+    }
 }

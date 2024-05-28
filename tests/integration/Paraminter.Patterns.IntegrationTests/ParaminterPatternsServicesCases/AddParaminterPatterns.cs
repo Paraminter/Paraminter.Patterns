@@ -21,7 +21,11 @@ public sealed class AddParaminterPatterns
     [Fact]
     public void IArgumentPatternMatchResultFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentPatternMatchResultFactoryProvider>();
 
-    private static void Target(IServiceCollection services) => ParaminterPatternsServices.AddParaminterPatterns(services);
+    private static void Target(
+        IServiceCollection services)
+    {
+        ParaminterPatternsServices.AddParaminterPatterns(services);
+    }
 
     [AssertionMethod]
     private static void ServiceCanBeResolved<TService>()

@@ -5,7 +5,7 @@ using Xunit;
 public sealed class GetMatchedArgument
 {
     [Fact]
-    public void ReturnsSameAsConstructedWith()
+    public void ReturnsArgument()
     {
         var fixture = ResultFixtureFactory.Create<object>();
 

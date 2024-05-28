@@ -75,5 +75,11 @@ public sealed class TryRecordData
         fixture.PatternedRecorderMock.VerifyNoOtherCalls();
     }
 
-    private static bool Target<TParameter, TIn, TOut>(IRecorderFixture<TParameter, TIn, TOut> fixture, TParameter parameter, TIn data) => fixture.Sut.TryRecordData(parameter, data);
+    private static bool Target<TParameter, TIn, TOut>(
+        IRecorderFixture<TParameter, TIn, TOut> fixture,
+        TParameter parameter,
+        TIn data)
+    {
+        return fixture.Sut.TryRecordData(parameter, data);
+    }
 }

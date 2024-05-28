@@ -32,5 +32,10 @@ public sealed class Constructor
         Assert.NotNull(result);
     }
 
-    private static ArgumentPatternMatchResultFactoryProvider Target(ISuccessfulArgumentPatternMatchResultFactory successful, IUnsuccessfulArgumentPatternMatchResultFactory unsuccessful) => new(successful, unsuccessful);
+    private static ArgumentPatternMatchResultFactoryProvider Target(
+        ISuccessfulArgumentPatternMatchResultFactory successful,
+        IUnsuccessfulArgumentPatternMatchResultFactory unsuccessful)
+    {
+        return new ArgumentPatternMatchResultFactoryProvider(successful, unsuccessful);
+    }
 }
